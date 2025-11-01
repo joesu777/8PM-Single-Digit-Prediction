@@ -3,6 +3,8 @@ from fastai.vision.all import *
 
 st.title("Single Digit Prediction")
 st.text("Built by Joel Suwanto")
+import sys, types
+sys.modules['fasttransform'] = types.ModuleType('fasttransform')
 
 def number_label(file_path):
     file_parts = str(file_path).split("/")
@@ -14,7 +16,7 @@ def number_label(file_path):
 single_digit_model = load_learner("single_digit_model.pkl")
 
 def predict(image):
-    img = PIlImage.create(image)
+    img = PILImage.create(image)
     pred_class, pred_idx, outputs = single_digit_model.predict(img)
     return pred_class
 
